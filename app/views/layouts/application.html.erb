@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Soundcloud App</title>
+  <%= stylesheet_link_tag    "application", :media => "all" %>
+  <%= javascript_include_tag "application" %>
+  <link rel="stylesheet" href="http://code.jquery.com/ui/1.9.1/themes/base/jquery-ui.css" />
+  <script src="http://code.jquery.com/jquery-1.8.2.js"></script>
+  <script src="http://code.jquery.com/ui/1.9.1/jquery-ui.js"></script>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+<div class= "navbar navbar-fixed-top" >
+      <div class="navbar-inner">
+        <div class "contaniner">
+          <a href="#" class="brand">SoundCLoud S.C.B</a>  
+          <ul class="nav">
+            <li><%=link_to "Feed" , feed_path%></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <footer class= "navbar navbar-fixed-bottom">
+      <div class="navbar-inner">
+        <div class="container">
+          <a href="http://www.koombea.com" class ="brand">&copy; Koombea 2012</a> 
+        </div>
+      </div>
+    </footer>
+
+    <div class="contaniner">
+      <%if notice%>
+        <div class="alert alert-success">
+          <button type="button" class="close" data-dismiss="alert">×</button>
+          <p class="notice"><%= notice %></p> 
+        </div>
+      <%end%>
+      <%if alert%>
+        <div class="alert alert-error">
+          <button type="button" class="close" data-dismiss="alert">×</button>
+          <p><%= alert %></p>
+        </div>
+      <%end%>
+    </div>
+
+    <div id="yield" class="container">
+      <%= yield %>
+    </div>
+</body>
+</html>

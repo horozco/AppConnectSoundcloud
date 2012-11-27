@@ -1,0 +1,38 @@
+<h1>Tracks</h1>
+<%client = Soundcloud.new(:client_id => "5ba473964263fd02eec8f08732b65d4f")%>
+<%tracks = client.get('/tracks', :limit => 5, :order => 'hotness')%>
+
+<table class="table table-striped table-hover table-bordered">
+  <tr>
+    <th>#</th>
+    <th>Id</th>
+    <th>Title</th>
+    <th>Duration</th>
+    <th>Genre</th>
+    <th>Format</th>
+  </tr>
+<% c = 1%>  
+<%tracks.each do |track|%> 
+  <tr>
+    <td><%= c%></td>
+    <td><%= track.id %></td>
+    <td><%= track.title %></td>
+    <% t = Time.at(track.duration) %>
+    <td><%= track.duration %></td>
+    <td><%= track.genre %></td>
+    <td><%= track.original_format %></td>
+  </tr>
+  <% c = c + 1%>
+<% end %>
+</table>
+
+<div id="accordion">
+	<%tracks.each do |track|%>
+		<h3><%= track.title %></h3>
+		<div>
+		<%  track_url = track.permalink_url
+  			embed_info = client.get('/oembed', :url => track_url)%>
+		<%=embed_info['html'].html_safe%>
+		</div>
+    <% end %>
+</div>
